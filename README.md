@@ -1,6 +1,6 @@
 # api-test
 
-FIXME
+Tryin out [compojure-api](https://github.com/metosin/compojure-api). Try it out at http://compojure-api-test.herokuapp.com/apidocs/
 
 ## Usage
 
@@ -12,7 +12,7 @@ FIXME
 
 ```
 lein do clean, ring uberjar
-java -jar target/server.jar
+java -cp target/server.jar clojure.main -m api-test.handler
 ```
 
 ### Packaging as war
@@ -21,4 +21,4 @@ java -jar target/server.jar
 
 ## License
 
-Copyright ©  FIXME
+MIT

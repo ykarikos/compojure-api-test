@@ -1,5 +1,6 @@
 (ns api-test.handler
   (:require [compojure.api.sweet :refer :all]
+            [ring.adapter.jetty :as jetty]
             [ring.util.http-response :refer :all]
             [schema.core :as s]))
 
@@ -24,3 +25,7 @@
                            :query-params [name :- String]
                            :summary "say hello"
                            (ok {:message (str "Hejsan, " name)})))))
+
+(defn -main [& [port]]
+  (let [port (Integer. (or port (System/getenv "PORT") 5000))]
+    (jetty/run-jetty app {:port port :join? false})))

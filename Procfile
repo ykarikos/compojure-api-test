@@ -1,1 +1,1 @@
-web: java -cp target/server.jar clojure.main -m api-test.handler.main
+web: java -cp target/server.jar clojure.main -m api-test.handler

@@ -5,6 +5,8 @@
             [ring.adapter.jetty :as jetty]
             [ring.util.http-response :refer :all]))
 
+(def app-port (or (env :port) 3000))
+
 (defapi api-app
   (swagger-ui "/apidocs")
   (swagger-docs
@@ -33,11 +35,13 @@
 
 
 (def app
-  (let [origin-url (-> env :origin-url re-pattern)]
+  (let [origin-url (env :origin-url)
+        local-url (or (env :local-url) (str "http://localhost:" app-port))]
+    (println "CORS urls:" origin-url local-url)
     (wrap-cors api-app
-               :access-control-allow-origin [origin-url]
+               :access-control-allow-origin (map re-pattern [origin-url local-url])
                :access-control-allow-methods [:get :post])))
 
-(defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 5000))]
+(defn -main [& [port-override]]
+  (let [port (Integer. (or port-override app-port))]
     (jetty/run-jetty app {:port port :join? false})))

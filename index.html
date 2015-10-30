@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test form submit</title>
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+  
+$( document ).ready(function() {
+  var form = $("#theform");
+  
+  form.submit(function(event) {
+    event.preventDefault();
+    console.log("submitting: " + form.serialize());
+    
+    $.ajax({
+      url: form.attr("action"),
+      type: "POST",
+      data: JSON.stringify({name: $("#name").val()}),
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      success: function(result) {
+        console.log(result);
+        $("#result").html(result.message);
+      }
+    });
+  });
+});
+</script>
+<style>
+body {
+  font-family: Helvetica, sans-serif;
+}
+</style>
+</head>
+<body>
+<h1>Compojure API test</h1>
+<form id="theform" method="POST" action="http://compojure-api-test.herokuapp.com/api/v1/fi/test">
+  <p>Name: <input type="name" id="name" name="name">
+  <p><input id="submit" type="submit">
+</form>
+<p>Result: <span id="result"></span></p>
+
+<p>See the source code at <a href="https://github.com/ykarikos/compojure-api-test">https://github.com/ykarikos/compojure-api-test</a></p>
+</body>
+</html>

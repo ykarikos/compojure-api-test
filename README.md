@@ -1,6 +1,6 @@
-# api-test
+# Compojure API test
 
-Tryin out [compojure-api](https://github.com/metosin/compojure-api).
+Trying out [compojure-api](https://github.com/metosin/compojure-api).
 
 The REST API docs: http://compojure-api-test.herokuapp.com/apidocs/
 
@@ -15,7 +15,7 @@ export ORIGIN_URL=http://localhost:8080
 lein ring server
 ```
 
-The apidocs are running at http://localhost:5000/apidocs/
+The apidocs are running at [http://localhost:3000/apidocs/](http://localhost:3000/apidocs/)
 
 ### Packaging and running as standalone jar
 

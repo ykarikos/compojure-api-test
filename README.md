@@ -1,6 +1,6 @@
 # Compojure API test
 
-Trying out [compojure-api](https://github.com/metosin/compojure-api).
+Trying out [compojure-api](https://github.com/metosin/compojure-api) with [Heroku](https://www.heroku.com/) and [ring-cors](https://github.com/r0man/ring-cors).
 
 The REST API docs: http://compojure-api-test.herokuapp.com/apidocs/
 

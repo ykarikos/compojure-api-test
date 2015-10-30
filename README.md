@@ -2,9 +2,9 @@
 
 Trying out [compojure-api](https://github.com/metosin/compojure-api) with [Heroku](https://www.heroku.com/) and [ring-cors](https://github.com/r0man/ring-cors).
 
-The REST API docs: http://compojure-api-test.herokuapp.com/apidocs/
+The REST API docs: https://compojure-api-test.herokuapp.com/apidocs/
 
-Try posting from another host: http://ykarikos.github.io/compojure-api-test/
+Try posting from another host: https://ykarikos.github.io/compojure-api-test/
 
 ## Usage
 

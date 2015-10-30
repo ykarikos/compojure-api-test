@@ -1,6 +1,6 @@
-# api-test
+# Compojure API test
 
-Tryin out [compojure-api](https://github.com/metosin/compojure-api).
+Trying out [compojure-api](https://github.com/metosin/compojure-api).
 
 The REST API docs: http://compojure-api-test.herokuapp.com/apidocs/
 

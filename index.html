@@ -10,15 +10,18 @@ $( document ).ready(function() {
   
   form.submit(function(event) {
     event.preventDefault();
-    console.log("submitting: " + form.serialize());
+    var formdata = { name: $("#name").val() };
+    console.log("submitting:");
+    console.log(formdata);
     
     $.ajax({
       url: form.attr("action"),
       type: "POST",
-      data: JSON.stringify({name: $("#name").val()}),
+      data: JSON.stringify(formdata),
       dataType: "json",
       contentType: "application/json; charset=utf-8",
       success: function(result) {
+        console.log("response:")
         console.log(result);
         $("#result").html(result.message);
       }

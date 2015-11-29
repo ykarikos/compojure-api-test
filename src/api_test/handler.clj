@@ -3,12 +3,23 @@
             [ring.middleware.cors :refer [wrap-cors]]
             [environ.core :refer [env]]
             [ring.adapter.jetty :as jetty]
+            [compojure.core :refer [ANY]]
+            [ring.middleware.basic-authentication :refer [wrap-basic-authentication]]
             [ring.util.http-response :refer :all]))
 
 (def app-port (or (env :port) 3000))
 
+(defn- authenticated?
+  [name pass]
+  (and (= name (env :api-user))
+       (= pass (env :api-passwd))))
+
+(def docs-root "/apidocs")
+
 (defapi api-app
-  (swagger-ui "/apidocs")
+  (ANY (str docs-root "*") []
+       (-> (swagger-ui docs-root)
+           (wrap-basic-authentication authenticated?)))
   (swagger-docs
    {:info {:title "My very own REST API"
            :version "0.1"
@@ -38,9 +49,9 @@
   (let [origin-url (env :origin-url)
         local-url (or (env :local-url) (str "http://localhost:" app-port))]
     (println "CORS urls:" origin-url local-url)
-    (wrap-cors api-app
-               :access-control-allow-origin (map re-pattern [origin-url local-url])
-               :access-control-allow-methods [:get :post])))
+    (-> api-app
+        (wrap-cors :access-control-allow-origin (map re-pattern [origin-url local-url])
+                   :access-control-allow-methods [:get :post]))))
 
 (defn -main [& [port-override]]
   (let [port (Integer. (or port-override app-port))]
